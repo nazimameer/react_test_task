@@ -1,3 +1,3 @@
 import Logo from './logo.png';
-
-export { Logo };
+import QMark from './Qmark.png';
+export { Logo, QMark };
