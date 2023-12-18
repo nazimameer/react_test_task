@@ -8,12 +8,12 @@ export const Navbar = () => {
         <Image
           src={Logo}
           alt="craxino"
-          className="object-contain w-[50%] sm:w-[30%] h-[40px] md:h-[50px]"
+          className="object-contain cursor-pointer w-[50%] sm:w-[30%] h-[40px] md:h-[50px]"
         />
         <Image
           src={QMark}
           alt="craxino"
-          className="object-contain w-[9.5%] sm:w-[5%] h-[25px] md:h-[35px]"
+          className="object-contain cursor-pointer w-[9.5%] sm:w-[5%] h-[25px] md:h-[35px]"
         />
       </nav>
     </header>
