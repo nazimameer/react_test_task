@@ -18,17 +18,35 @@ import {
   setHowLong,
   setAbout,
   selectUser,
-  setPronouns
+  setPronouns,
 } from "../provider/slices/userSlice";
+import { message } from "antd";
 
 export const PersonalForm = () => {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   const router = useRouter();
   const handleClick = () => {
+    // Validate fields
+    if (
+      !user.fullName ||
+      !user.dateOfBirth ||
+      !user.currentAddress ||
+      !user.howLong ||
+      !user.about
+    ) {
+      // Display an error message or handle validation error in your preferred way
+      if (!user.fullName) return message.error("Full name is required");
+      if (!user.dateOfBirth) return message.error("Date of birth is required");
+      if (!user.currentAddress)
+        return message.error("Current address is required");
+      if (!user.howLong)
+        return message.error("Please fill in all the required fields.");
+      if (!user.about)
+        return message.error("Please fill in all the required fields.");
+    }
     router.push("/financialinfo");
   };
-
 
   const handleFullnameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(setFullName(e.target.value));
@@ -38,7 +56,9 @@ export const PersonalForm = () => {
     dispatch(setDateOfBirth(e.target.value));
   };
 
-  const hanleCurrentAddressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const hanleCurrentAddressChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
     dispatch(setCurrentAddress(e.target.value));
   };
 
@@ -51,7 +71,7 @@ export const PersonalForm = () => {
   };
 
   const handlePronounsChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-   dispatch(setPronouns(e.target.value))
+    dispatch(setPronouns(e.target.value));
   };
   return (
     <Card color="transparent" shadow={false} placeholder={undefined}>
@@ -65,9 +85,10 @@ export const PersonalForm = () => {
       <form className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96">
         <div className="mb-1 flex flex-col gap-6">
           <div className="w-full flex gap-3">
-            <select className="select select-bordered w-[80px]  flex items-center justify-center h-[43px] border-solid border-2 border-gray-500 rounded max-w-xs"
-            value={user.pronouns}
-            onChange={handlePronounsChange}
+            <select
+              className="select select-bordered w-[80px]  flex items-center justify-center h-[43px] border-solid border-2 border-gray-500 rounded max-w-xs"
+              value={user.pronouns}
+              onChange={handlePronounsChange}
             >
               <option value="Mr">Mr</option>
               <option value="Mrs">Mrs</option>

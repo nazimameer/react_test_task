@@ -20,7 +20,7 @@ const initialState: UserState = {
   mobileNumber: '',
   password: '',
   confirmPassword: '',
-  pronouns: '',
+  pronouns: 'Mr',
   fullName: '',
   dateOfBirth: '',
   currentAddress: '',
