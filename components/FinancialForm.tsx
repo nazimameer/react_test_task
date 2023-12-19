@@ -7,7 +7,26 @@ import {
   Option,
   Select,
 } from "@material-tailwind/react";
+
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setStatus,
+  setSavings,
+  selectUser,
+} from "../provider/slices/userSlice";
 export const FinancialForm = () => {
+  const dispatch = useDispatch();
+  const user = useSelector(selectUser);
+  const handleStatusChange = (value: string | undefined) => {
+    if (value) {
+      dispatch(setStatus(value));
+    }
+  };
+
+  const handleSavingsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(setSavings(e.target.value));
+  };
+
   return (
     <Card color="transparent" shadow={false} placeholder={undefined}>
       <Typography
@@ -22,12 +41,14 @@ export const FinancialForm = () => {
           <Select
             label="What is your current employment status?"
             placeholder={undefined}
+            value={user.status}
+            onChange={handleStatusChange}
           >
-            <Option>Employed</Option>
-            <Option>Unemployed</Option>
-            <Option>Self-employed</Option>
-            <Option>Student</Option>
-            <Option>Homemaker</Option>
+            <Option value="Employed">Employed</Option>
+            <Option value="Unemployed">Unemployed</Option>
+            <Option value="Self-employed">Self-employed</Option>
+            <Option value="Student">Student</Option>
+            <Option value="Homemaker">Homemaker</Option>
           </Select>
 
           <Input
@@ -35,6 +56,8 @@ export const FinancialForm = () => {
             label="Additional savings / investments"
             crossOrigin={undefined}
             type="number"
+            value={user.savings}
+            onChange={handleSavingsChange}
           />
         </div>
 

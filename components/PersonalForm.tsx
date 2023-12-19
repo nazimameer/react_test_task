@@ -18,6 +18,7 @@ import {
   setHowLong,
   setAbout,
   selectUser,
+  setPronouns
 } from "../provider/slices/userSlice";
 
 export const PersonalForm = () => {
@@ -48,6 +49,10 @@ export const PersonalForm = () => {
   const handleAboutChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     dispatch(setAbout(e.target.value));
   };
+
+  const handlePronounsChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+   dispatch(setPronouns(e.target.value))
+  };
   return (
     <Card color="transparent" shadow={false} placeholder={undefined}>
       <Typography
@@ -60,12 +65,12 @@ export const PersonalForm = () => {
       <form className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96">
         <div className="mb-1 flex flex-col gap-6">
           <div className="w-full flex gap-3">
-            <select className="select select-bordered w-[60px]  flex items-center justify-center h-[43px] border-solid border-2 border-gray-500 rounded max-w-xs">
-              <option disabled selected>
-                Mr
-              </option>
-              <option>Mr</option>
-              <option>Mrs</option>
+            <select className="select select-bordered w-[80px]  flex items-center justify-center h-[43px] border-solid border-2 border-gray-500 rounded max-w-xs"
+            value={user.pronouns}
+            onChange={handlePronounsChange}
+            >
+              <option value="Mr">Mr</option>
+              <option value="Mrs">Mrs</option>
             </select>
 
             <Input
