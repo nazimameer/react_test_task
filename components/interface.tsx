@@ -1,4 +1,4 @@
 interface TabsProps {
-    hovered: boolean;
-    number: number;
-  }
+  hovered: boolean;
+  number: number;
+}

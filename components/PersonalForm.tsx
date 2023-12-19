@@ -1,5 +1,11 @@
 "use client";
-import { Card, Input, Button, Typography, Textarea } from "@material-tailwind/react";
+import {
+  Card,
+  Input,
+  Button,
+  Typography,
+  Textarea,
+} from "@material-tailwind/react";
 import Image from "next/image";
 import { Iicon } from "../assets";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
@@ -26,11 +32,11 @@ export const PersonalForm = () => {
             </select>
 
             <Input
-            size="lg"
-            label="Full name as per your passport"
-            crossOrigin={undefined}
-            type="text"
-          />
+              size="lg"
+              label="Full name as per your passport"
+              crossOrigin={undefined}
+              type="text"
+            />
           </div>
 
           <Input
@@ -52,9 +58,7 @@ export const PersonalForm = () => {
             type="text"
           />
           <div className="w-full">
-
-          <Textarea placeholder="Tell us a bit about yourself (what are you like as a person, do you have any hobbies, etc.)"  />
-          
+            <Textarea placeholder="Tell us a bit about yourself (what are you like as a person, do you have any hobbies, etc.)" />
           </div>
         </div>
         <div className="flex w-full gap-2">
@@ -75,7 +79,6 @@ export const PersonalForm = () => {
             Create your account
           </Typography>
         </Button>
-
       </form>
     </Card>
   );

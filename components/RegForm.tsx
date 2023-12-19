@@ -7,11 +7,21 @@ import {
   Typography,
 } from "@material-tailwind/react";
 import Image from "next/image";
-import { Iicon } from '../assets'
+import { Iicon } from "../assets";
 export const RegForm = () => {
   return (
-    <Card color="transparent" shadow={false} placeholder={undefined} className="mt-10">
-      <Typography variant="h4" color="blue-gray" placeholder={undefined} className="flex w-full justify-center font-mono font-bold">
+    <Card
+      color="transparent"
+      shadow={false}
+      placeholder={undefined}
+      className="mt-10"
+    >
+      <Typography
+        variant="h4"
+        color="blue-gray"
+        placeholder={undefined}
+        className="flex w-full justify-center font-mono font-bold"
+      >
         Create your account
       </Typography>
       <Typography
@@ -57,7 +67,7 @@ export const RegForm = () => {
             crossOrigin={undefined}
             type="text"
           />
-           <Input
+          <Input
             size="lg"
             label="Confirm your password"
             crossOrigin={undefined}
@@ -65,32 +75,32 @@ export const RegForm = () => {
           />
         </div>
         <div className="flex w-full gap-2">
-        <div className="flex justify-center">
-
-        <Image src={Iicon} alt="Iicon" className="w-6 object-contain" />
-        </div>
-            <Typography
-              variant="small"
-              color="gray"
-              className="flex items-center font-medium text-xs mt-4 text-gray-500"
-              placeholder={undefined}
-            >
-              We need a password to keep your information safe. But don't worry, we'll also send your custom RenltyPass URL via email.
-            </Typography>
+          <div className="flex justify-center">
+            <Image src={Iicon} alt="Iicon" className="w-6 object-contain" />
+          </div>
+          <Typography
+            variant="small"
+            color="gray"
+            className="flex items-center font-medium text-xs mt-4 text-gray-500"
+            placeholder={undefined}
+          >
+            We need a password to keep your information safe. But don't worry,
+            we'll also send your custom RenltyPass URL via email.
+          </Typography>
         </div>
         <Button className="mt-6 bg-[#0074fe]" fullWidth placeholder={undefined}>
-            <Typography className="font-bold text-sm " placeholder={undefined}>
-
-        Create your account
-            </Typography>
+          <Typography className="font-bold text-sm " placeholder={undefined}>
+            Create your account
+          </Typography>
         </Button>
         <Typography
           color="gray"
           className="mt-4 text-xs font-medium text-gray-500"
           placeholder={undefined}
         >
-          By clicking 'Create your account', you are agreeing to our <u className="cursor-pointer">Terms & Conditions</u> and <u className="cursor-pointer">Privacy Policy</u>
-          
+          By clicking 'Create your account', you are agreeing to our{" "}
+          <u className="cursor-pointer">Terms & Conditions</u> and{" "}
+          <u className="cursor-pointer">Privacy Policy</u>
         </Typography>
       </form>
     </Card>
