@@ -1,3 +1,3 @@
 import { Navbar } from './Navbar';
-
-export { Navbar }
+import { RegForm} from './RegForm';
+export { Navbar, RegForm }
