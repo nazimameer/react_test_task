@@ -7,14 +7,17 @@ import {
   Option,
   Select,
 } from "@material-tailwind/react";
-
+import { useFormValidation } from '../hooks'
 import { useDispatch, useSelector } from "react-redux";
 import {
   setStatus,
   setSavings,
   selectUser,
 } from "../provider/slices/userSlice";
+import { useRouter } from "next/navigation";
+import { message } from "antd";
 export const FinancialForm = () => {
+  const router = useRouter();
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   const handleStatusChange = (value: string | undefined) => {
@@ -27,6 +30,27 @@ export const FinancialForm = () => {
     dispatch(setSavings(e.target.value));
   };
 
+  const handleSubmit = () => {
+    if (!user.status || !user.savings) {
+      // Display an error message or handle validation error in your preferred way
+      return message.error("Please fill in all the required fields.");
+    }
+
+    const valid = useFormValidation(user);
+
+    if(!valid.success){
+      router.push(`${valid.route}`);
+      message.error(`${valid.msg}`)
+
+      return;
+    }
+    
+    console.log(valid.success, valid.msg, valid.route);
+    
+
+    message.success("Form submitted successfully")
+  }
+
   return (
     <Card color="transparent" shadow={false} placeholder={undefined}>
       <Typography
@@ -36,7 +60,7 @@ export const FinancialForm = () => {
       >
         All your information is stored securely.
       </Typography>
-      <form className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96">
+      <div className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96">
         <div className="mb-1 flex flex-col gap-6">
           <Select
             label="What is your current employment status?"
@@ -61,12 +85,14 @@ export const FinancialForm = () => {
           />
         </div>
 
-        <Button className="mt-6 bg-[#0074fe]" fullWidth placeholder={undefined}>
+        <Button className="mt-6 bg-[#0074fe]" fullWidth placeholder={undefined}
+        onClick={handleSubmit}
+        >
           <Typography className="font-bold text-sm " placeholder={undefined}>
             S<span className="lowercase">ave and continue</span>
           </Typography>
         </Button>
-      </form>
+      </div>
     </Card>
   );
 };
