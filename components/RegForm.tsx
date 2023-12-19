@@ -6,107 +6,91 @@ import {
   Button,
   Typography,
 } from "@material-tailwind/react";
-
+import Image from "next/image";
+import { Iicon } from '../assets'
 export const RegForm = () => {
   return (
-    <Card color="transparent" shadow={false} placeholder={undefined}>
-      <Typography variant="h4" color="blue-gray" placeholder={undefined}>
-        Sign Up
+    <Card color="transparent" shadow={false} placeholder={undefined} className="mt-10">
+      <Typography variant="h4" color="blue-gray" placeholder={undefined} className="flex w-full justify-center font-mono font-bold">
+        Create your account
       </Typography>
       <Typography
         color="gray"
-        className="mt-1 font-normal"
+        className="mt-1 font-medium text-sm flex w-full justify-center font-mono"
         placeholder={undefined}
       >
-        Nice to meet you! Enter your details to register.
+        Set-up your RentlyPass in as little as 2 minutes.
       </Typography>
       <form className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96">
         <div className="mb-1 flex flex-col gap-6">
           <Typography
             variant="h6"
             color="blue-gray"
-            className="-mb-3"
+            className="-mb-3 font-semibold text-gray-700 text-sm"
             placeholder={undefined}
           >
-            Your Name
+            Contact details
           </Typography>
           <Input
             size="lg"
-            placeholder="name@mail.com"
-            className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
-            labelProps={{
-              className: "before:content-none after:content-none",
-            }}
+            label="Email address"
             crossOrigin={undefined}
+            type="text"
+          />
+          <Input
+            size="lg"
+            label="Mobile number"
+            crossOrigin={undefined}
+            type="number"
           />
           <Typography
             variant="h6"
             color="blue-gray"
-            className="-mb-3"
+            className="-mb-3 font-semibold text-gray-700 text-sm"
             placeholder={undefined}
           >
-            Your Email
+            Set password
           </Typography>
           <Input
             size="lg"
-            placeholder="name@mail.com"
-            className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
-            labelProps={{
-              className: "before:content-none after:content-none",
-            }}
+            label="Create a password"
             crossOrigin={undefined}
+            type="text"
           />
-          <Typography
-            variant="h6"
-            color="blue-gray"
-            className="-mb-3"
-            placeholder={undefined}
-          >
-            Password
-          </Typography>
-          <Input
-            type="password"
+           <Input
             size="lg"
-            placeholder="********"
-            className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
-            labelProps={{
-              className: "before:content-none after:content-none",
-            }}
+            label="Confirm your password"
             crossOrigin={undefined}
+            type="text"
           />
         </div>
-        <Checkbox
-          label={
+        <div className="flex w-full gap-2">
+        <div className="flex justify-center">
+
+        <Image src={Iicon} alt="Iicon" className="w-6 object-contain" />
+        </div>
             <Typography
               variant="small"
               color="gray"
-              className="flex items-center font-normal"
+              className="flex items-center font-medium text-xs mt-4 text-gray-500"
               placeholder={undefined}
             >
-              I agree the
-              <a
-                href="#"
-                className="font-medium transition-colors hover:text-gray-900"
-              >
-                &nbsp;Terms and Conditions
-              </a>
+              We need a password to keep your information safe. But don't worry, we'll also send your custom RenltyPass URL via email.
             </Typography>
-          }
-          containerProps={{ className: "-ml-2.5" }}
-          crossOrigin={undefined}
-        />
-        <Button className="mt-6" fullWidth placeholder={undefined}>
-          sign up
+        </div>
+        <Button className="mt-6 bg-[#0074fe]" fullWidth placeholder={undefined}>
+            <Typography className="font-bold text-sm " placeholder={undefined}>
+
+        Create your account
+            </Typography>
         </Button>
         <Typography
           color="gray"
-          className="mt-4 text-center font-normal"
+          className="mt-4 text-xs font-medium text-gray-500"
           placeholder={undefined}
         >
-          Already have an account?{" "}
-          <a href="#" className="font-medium text-gray-900">
-            Sign In
-          </a>
+          By clicking 'Create your account', you are agreeing to our <u className="cursor-pointer">Terms & Conditions</u> and <u className="cursor-pointer">Privacy Policy</u>
+          
         </Typography>
       </form>
     </Card>
