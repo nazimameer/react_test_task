@@ -3,7 +3,7 @@ import { Card, Input, Button, Typography } from "@material-tailwind/react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { Iicon } from "../assets";
-
+import { message } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import {
   selectUser,
@@ -18,6 +18,41 @@ export const RegForm = () => {
   const user = useSelector(selectUser);
   const router = useRouter();
   const handleClick = () => {
+    // Validate email
+    const email = user.email;
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    if (!email) return message.error("Email is required");
+    if (!emailRegex.test(email)) return message.error("Invalid email address");
+
+    // Validate mobile number
+    const mobileNumber = user.mobileNumber;
+    const mobileNumberRegex = /^\d{10}$/;
+    if (!mobileNumber) return message.error("MobileNumber is required");
+    if (!mobileNumberRegex.test(mobileNumber))
+      return message.error("Mobile number should be 10 digits");
+
+    // Validate password
+    const password = user.password;
+    if (!password) return message.error("Password is required");
+    if (!/[A-Z]/.test(password))
+      return message.error(
+        "Password must contain at least one uppercase letter."
+      );
+
+    // // Check for at least one digit (number)
+    if (!/\d/.test(password))
+      return message.error("Password must contain at least one number.");
+
+    // // Check for a minimum length of 6 characters
+    if (password.length < 6)
+      return message.error("Password must be at least 6 characters long.");
+
+    //  Validate confirm password
+    const confirmPassword = user.confirmPassword;
+    if (!confirmPassword) return message.error("Confirm password is required");
+    if (password !== confirmPassword)
+      return message.error("Password and Confirm Password must match.");
+
     router.push("/personalinfo");
   };
 
@@ -98,7 +133,7 @@ export const RegForm = () => {
             size="lg"
             label="Create a password"
             crossOrigin={undefined}
-            type="text"
+            type="password"
             value={user.password}
             onChange={handlePasswordChange}
           />
@@ -106,7 +141,7 @@ export const RegForm = () => {
             size="lg"
             label="Confirm your password"
             crossOrigin={undefined}
-            type="text"
+            type="password"
             value={user.confirmPassword}
             onChange={handleConfirmPasswordChange}
           />
