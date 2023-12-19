@@ -8,9 +8,12 @@ import {
 } from "@material-tailwind/react";
 import Image from "next/image";
 import { Iicon } from "../assets";
-import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
-import { useState } from "react";
+import { useRouter } from 'next/navigation'
 export const PersonalForm = () => {
+    const router = useRouter();
+    const handleClick = () => {
+        router.push('/financialinfo')
+    }
   return (
     <Card color="transparent" shadow={false} placeholder={undefined}>
       <Typography
@@ -74,7 +77,7 @@ export const PersonalForm = () => {
             All information can be edited once you have created your account.
           </Typography>
         </div>
-        <Button className="mt-6 bg-[#0074fe]" fullWidth placeholder={undefined}>
+        <Button className="mt-6 bg-[#0074fe]" fullWidth placeholder={undefined} onClick={handleClick}>
           <Typography className="font-bold text-sm " placeholder={undefined}>
             Create your account
           </Typography>

@@ -4,8 +4,10 @@ const page = () => {
   return (
     <div className="flex flex-col min-h-screen items-center pt-10">
       <div className="pt-24 flex gap-3">
-        <Tab hovered={true} number={1} />
-        <Tab hovered={false} number={2} />
+        <Tab hovered={true} number={1} route="/personalinfo" />
+        <div>
+        <Tab hovered={false} number={2} route="/financialinfo"/>
+        </div>
       </div>
       <div className="mt-5">
         <div

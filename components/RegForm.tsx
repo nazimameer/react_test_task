@@ -1,14 +1,13 @@
 "use client";
-import {
-  Card,
-  Input,
-  Checkbox,
-  Button,
-  Typography,
-} from "@material-tailwind/react";
+import { Card, Input, Button, Typography } from "@material-tailwind/react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { Iicon } from "../assets";
 export const RegForm = () => {
+  const router = useRouter();
+  const handleClick = () => {
+    router.push("/personalinfo");
+  };
   return (
     <Card
       color="transparent"
@@ -88,7 +87,12 @@ export const RegForm = () => {
             we'll also send your custom RenltyPass URL via email.
           </Typography>
         </div>
-        <Button className="mt-6 bg-[#0074fe]" fullWidth placeholder={undefined}>
+        <Button
+          className="mt-6 bg-[#0074fe]"
+          fullWidth
+          placeholder={undefined}
+          onClick={handleClick}
+        >
           <Typography className="font-bold text-sm " placeholder={undefined}>
             Create your account
           </Typography>
