@@ -8,12 +8,46 @@ import {
 } from "@material-tailwind/react";
 import Image from "next/image";
 import { Iicon } from "../assets";
-import { useRouter } from 'next/navigation'
+import { useRouter } from "next/navigation";
+
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setFullName,
+  setDateOfBirth,
+  setCurrentAddress,
+  setHowLong,
+  setAbout,
+  selectUser,
+} from "../provider/slices/userSlice";
+
 export const PersonalForm = () => {
-    const router = useRouter();
-    const handleClick = () => {
-        router.push('/financialinfo')
-    }
+  const dispatch = useDispatch();
+  const user = useSelector(selectUser);
+  const router = useRouter();
+  const handleClick = () => {
+    router.push("/financialinfo");
+  };
+
+
+  const handleFullnameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(setFullName(e.target.value));
+  };
+
+  const handleDateofBirthChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(setDateOfBirth(e.target.value));
+  };
+
+  const hanleCurrentAddressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(setCurrentAddress(e.target.value));
+  };
+
+  const handleHowLongChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(setHowLong(e.target.value));
+  };
+
+  const handleAboutChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    dispatch(setAbout(e.target.value));
+  };
   return (
     <Card color="transparent" shadow={false} placeholder={undefined}>
       <Typography
@@ -39,6 +73,8 @@ export const PersonalForm = () => {
               label="Full name as per your passport"
               crossOrigin={undefined}
               type="text"
+              value={user.fullName}
+              onChange={handleFullnameChange}
             />
           </div>
 
@@ -47,21 +83,31 @@ export const PersonalForm = () => {
             label="Date of birth"
             crossOrigin={undefined}
             type="date"
+            value={user.dateOfBirth}
+            onChange={handleDateofBirthChange}
           />
           <Input
             size="lg"
             label="Current address"
             crossOrigin={undefined}
-            type="number"
+            type="text"
+            value={user.currentAddress}
+            onChange={hanleCurrentAddressChange}
           />
           <Input
             size="lg"
             label="How long have you lived at this adress ?"
             crossOrigin={undefined}
             type="text"
+            value={user.howLong}
+            onChange={handleHowLongChange}
           />
           <div className="w-full">
-            <Textarea placeholder="Tell us a bit about yourself (what are you like as a person, do you have any hobbies, etc.)" />
+            <Textarea
+              placeholder="Tell us a bit about yourself (what are you like as a person, do you have any hobbies, etc.)"
+              value={user.about}
+              onChange={handleAboutChange}
+            />
           </div>
         </div>
         <div className="flex w-full gap-2">
@@ -77,7 +123,12 @@ export const PersonalForm = () => {
             All information can be edited once you have created your account.
           </Typography>
         </div>
-        <Button className="mt-6 bg-[#0074fe]" fullWidth placeholder={undefined} onClick={handleClick}>
+        <Button
+          className="mt-6 bg-[#0074fe]"
+          fullWidth
+          placeholder={undefined}
+          onClick={handleClick}
+        >
           <Typography className="font-bold text-sm " placeholder={undefined}>
             S<span className="lowercase">ave and continue</span>
           </Typography>

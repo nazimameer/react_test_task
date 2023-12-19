@@ -3,10 +3,40 @@ import { Card, Input, Button, Typography } from "@material-tailwind/react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { Iicon } from "../assets";
+
+import { useDispatch, useSelector } from "react-redux";
+import {
+  selectUser,
+  setEmail,
+  setMobileNumber,
+  setPassword,
+  setConfirmPassword,
+} from "../provider/slices/userSlice";
+
 export const RegForm = () => {
+  const dispatch = useDispatch();
+  const user = useSelector(selectUser);
   const router = useRouter();
   const handleClick = () => {
     router.push("/personalinfo");
+  };
+
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(setEmail(e.target.value));
+  };
+
+  const handleMobileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(setMobileNumber(e.target.value));
+  };
+
+  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(setPassword(e.target.value));
+  };
+
+  const handleConfirmPasswordChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    dispatch(setConfirmPassword(e.target.value));
   };
   return (
     <Card
@@ -45,12 +75,16 @@ export const RegForm = () => {
             label="Email address"
             crossOrigin={undefined}
             type="text"
+            value={user.email}
+            onChange={handleEmailChange}
           />
           <Input
             size="lg"
             label="Mobile number"
             crossOrigin={undefined}
             type="number"
+            value={user.mobileNumber}
+            onChange={handleMobileChange}
           />
           <Typography
             variant="h6"
@@ -65,12 +99,16 @@ export const RegForm = () => {
             label="Create a password"
             crossOrigin={undefined}
             type="text"
+            value={user.password}
+            onChange={handlePasswordChange}
           />
           <Input
             size="lg"
             label="Confirm your password"
             crossOrigin={undefined}
             type="text"
+            value={user.confirmPassword}
+            onChange={handleConfirmPasswordChange}
           />
         </div>
         <div className="flex w-full gap-2">
