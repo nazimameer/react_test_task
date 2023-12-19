@@ -1,3 +1,5 @@
 import { Navbar } from './Navbar';
 import { RegForm} from './RegForm';
-export { Navbar, RegForm }
+import { Tab } from './tab';
+import { PersonalForm } from './PersonalForm';
+export { Navbar, RegForm, Tab, PersonalForm }
