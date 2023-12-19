@@ -79,7 +79,7 @@ export const PersonalForm = () => {
         </div>
         <Button className="mt-6 bg-[#0074fe]" fullWidth placeholder={undefined} onClick={handleClick}>
           <Typography className="font-bold text-sm " placeholder={undefined}>
-            Create your account
+            S<span className="lowercase">ave and continue</span>
           </Typography>
         </Button>
       </form>
