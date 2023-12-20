@@ -1,10 +1,10 @@
+"use client";
 /**
  * CustomUrlInput component for generating and copying custom URLs.
  * @module Components
  * @exports CustomUrlInput - The CustomUrlInput React component.
  */
 
-"use client";
 import { useEffect, useState } from "react";
 import { Input, Button } from "@material-tailwind/react";
 import { useParams } from "next/navigation";

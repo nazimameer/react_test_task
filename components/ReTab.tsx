@@ -1,3 +1,4 @@
+'use client'
 /**
  * Tab component for navigation tabs.
  * @module Components

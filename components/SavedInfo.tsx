@@ -1,3 +1,4 @@
+'use client'
 /**
  * SavedInfoForm component to display saved user information.
  * @module Components

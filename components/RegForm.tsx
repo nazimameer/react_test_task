@@ -1,3 +1,5 @@
+'use client'
+
 /**
  * RegForm component for user registration.
  * @module Components

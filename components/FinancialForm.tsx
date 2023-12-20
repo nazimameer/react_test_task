@@ -1,10 +1,10 @@
+"use client";
 /**
  * FinancialForm component for handling financial information.
  * @module Components
  * @exports FinancialForm - The FinancialForm React component.
  */
 
-"use client";
 import React from "react";
 import {
   Card,

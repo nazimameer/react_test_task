@@ -1,3 +1,4 @@
+'use client'
 /**
  * PersonalForm component for collecting personal information.
  * @module Components
