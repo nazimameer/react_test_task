@@ -6,7 +6,7 @@ const page = () => {
       <div className="pt-24 flex gap-3">
         <Tab hovered={true} number={1} route="/personalinfo" />
         <div>
-        <Tab hovered={false} number={2} route="/financialinfo"/>
+          <Tab hovered={false} number={2} route="/financialinfo" />
         </div>
       </div>
       <div className="mt-5">

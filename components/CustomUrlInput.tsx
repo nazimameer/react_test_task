@@ -18,15 +18,15 @@ export function CustomUrlInput() {
     }
   }, [params]);
 
-  const handleCopyToClipboard = async() => {
+  const handleCopyToClipboard = async () => {
     try {
-        await navigator.clipboard.writeText(`${domain}/savedinfo/${id}`);
-        message.success("Copied to clipboard!");
-      } catch (error) {
-        console.error("Error copying to clipboard:", error);
-        message.error("Failed to copy to clipboard");
-      }
-  }
+      await navigator.clipboard.writeText(`${domain}/savedinfo/${id}`);
+      message.success("Copied to clipboard!");
+    } catch (error) {
+      console.error("Error copying to clipboard:", error);
+      message.error("Failed to copy to clipboard");
+    }
+  };
   return (
     <div className="relative flex w-full max-w-[24rem]">
       <Input

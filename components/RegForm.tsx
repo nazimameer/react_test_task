@@ -118,7 +118,7 @@ export const RegForm = () => {
             label="Mobile number"
             crossOrigin={undefined}
             type="number"
-            value={user.mobileNumber || ''}
+            value={user.mobileNumber || ""}
             onChange={handleMobileChange}
           />
           <Typography

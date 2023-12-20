@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface UserState {
   email: string;
@@ -16,22 +16,22 @@ interface UserState {
 }
 
 const initialState: UserState = {
-  email: '',
+  email: "",
   mobileNumber: null,
-  password: '',
-  confirmPassword: '',
-  pronouns: 'Mr',
-  fullName: '',
-  dateOfBirth: '',
-  currentAddress: '',
-  howLong: '',
-  about: '',
-  status: '',
+  password: "",
+  confirmPassword: "",
+  pronouns: "Mr",
+  fullName: "",
+  dateOfBirth: "",
+  currentAddress: "",
+  howLong: "",
+  about: "",
+  status: "",
   savings: null,
 };
 
 const userSlice = createSlice({
-  name: 'user',
+  name: "user",
   initialState,
   reducers: {
     setEmail: (state, action: PayloadAction<string>) => {
