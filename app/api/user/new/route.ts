@@ -50,11 +50,11 @@ export const POST = async (req: NextRequest) => {
 
     try {
       const savedUser = await newUser.save();
-
+        const { _id } = savedUser;
       return NextResponse.json({
         message: "Form submitted successfully",
         success: true,
-        savedUser,
+        _id,
       });
     } catch (saveError: any) {
       if (saveError.code === 11000) {

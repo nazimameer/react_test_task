@@ -48,6 +48,7 @@ export const FinancialForm = () => {
     try {
       const resposne = await axios.post("/api/user/new", user);
       message.success(resposne.data.message);
+      router.push(`/url/${resposne.data._id}`)
     } catch (error: any) {
       const errorMessage = error.response.data.error;
       message.error(errorMessage);
