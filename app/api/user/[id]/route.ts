@@ -13,7 +13,7 @@ connectToDb();
  */
 
 interface RouteParams {
-  id: string;
+  id: string; 
 }
 export const GET = async (
   req: NextRequest,
