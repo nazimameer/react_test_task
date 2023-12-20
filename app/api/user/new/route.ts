@@ -33,7 +33,7 @@ export const POST = async (req: NextRequest) => {
 
     if (validationErrors) {
       // Return validation errors if any
-      console.log(validationErrors);
+      console.log(validationErrors); 
       return NextResponse.json({ errors: validationErrors }, { status: 400 });
     }
 
