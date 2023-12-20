@@ -1,9 +1,13 @@
-"use client";
-import { Card, Input, Button, Typography } from "@material-tailwind/react";
-import { useRouter } from "next/navigation";
+/**
+ * RegForm component for user registration.
+ * @module Components
+ * @exports RegForm - The RegForm React component.
+ */
+
+import React from "react";
 import Image from "next/image";
 import { Iicon } from "../assets";
-import { message } from "antd";
+import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import {
   selectUser,
@@ -12,11 +16,24 @@ import {
   setPassword,
   setConfirmPassword,
 } from "../provider/slices/userSlice";
+import { message } from "antd";
+import {
+  Card,
+  Input,
+  Button,
+  Typography,
+} from "@material-tailwind/react";
 
-export const RegForm = () => {
+/**
+ * React component for user registration form.
+ * @function RegForm
+ * @returns {JSX.Element} The JSX representation of the component.
+ */
+export const RegForm: React.FC = (): JSX.Element => {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   const router = useRouter();
+
   const handleClick = () => {
     // Validate email
     const email = user.email;
@@ -39,15 +56,15 @@ export const RegForm = () => {
         "Password must contain at least one uppercase letter."
       );
 
-    // // Check for at least one digit (number)
+    // Check for at least one digit (number)
     if (!/\d/.test(password))
       return message.error("Password must contain at least one number.");
 
-    // // Check for a minimum length of 6 characters
+    // Check for a minimum length of 6 characters
     if (password.length < 6)
       return message.error("Password must be at least 6 characters long.");
 
-    //  Validate confirm password
+    // Validate confirm password
     const confirmPassword = user.confirmPassword;
     if (!confirmPassword) return message.error("Confirm password is required");
     if (password !== confirmPassword)
@@ -56,23 +73,30 @@ export const RegForm = () => {
     router.push("/personalinfo");
   };
 
-  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleEmailChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ): void => {
     dispatch(setEmail(e.target.value));
   };
 
-  const handleMobileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleMobileChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ): void => {
     dispatch(setMobileNumber(parseInt(e.target.value)));
   };
 
-  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handlePasswordChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ): void => {
     dispatch(setPassword(e.target.value));
   };
 
   const handleConfirmPasswordChange = (
     e: React.ChangeEvent<HTMLInputElement>
-  ) => {
+  ): void => {
     dispatch(setConfirmPassword(e.target.value));
   };
+
   return (
     <Card
       color="transparent"
@@ -93,7 +117,7 @@ export const RegForm = () => {
         className="mt-1 font-medium text-sm flex w-full justify-center font-mono"
         placeholder={undefined}
       >
-        Set-up your RentlyPass in as little as 2 minutes.
+        Set up your RentlyPass in as little as 2 minutes.
       </Typography>
       <form className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96">
         <div className="mb-1 flex flex-col gap-6">

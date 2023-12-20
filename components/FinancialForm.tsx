@@ -1,4 +1,11 @@
+/**
+ * FinancialForm component for handling financial information.
+ * @module Components
+ * @exports FinancialForm - The FinancialForm React component.
+ */
+
 "use client";
+import React from "react";
 import {
   Card,
   Input,
@@ -17,28 +24,44 @@ import {
 } from "../provider/slices/userSlice";
 import { useRouter } from "next/navigation";
 import { message } from "antd";
-export const FinancialForm = () => {
+
+/**
+ * React component for handling financial information.
+ * @function FinancialForm
+ * @returns {JSX.Element} The JSX representation of the component.
+ */
+export const FinancialForm: React.FC = (): JSX.Element => {
+  // Retrieve router instance from Next.js
   const router = useRouter();
+  // Retrieve Redux dispatch function
   const dispatch = useDispatch();
+  // Retrieve user data from Redux store
   const user = useSelector(selectUser);
+
+  // Handler function for status change
   const handleStatusChange = (value: string | undefined) => {
     if (value) {
       dispatch(setStatus(value));
     }
   };
 
+  // Handler function for savings change
   const handleSavingsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(setSavings(parseInt(e.target.value)));
   };
 
+  // Handler function for form submission
   const handleSubmit = async () => {
+    // Check if required fields are filled
     if (!user.status || !user.savings) {
       // Display an error message or handle validation error in your preferred way
       return message.error("Please fill in all the required fields.");
     }
 
+    // Validate the form using custom hook
     const valid = useFormValidation(user);
 
+    // Redirect to the specified route if validation fails
     if (!valid.success) {
       router.push(`${valid.route}`);
       message.error(`${valid.msg}`);
@@ -46,16 +69,20 @@ export const FinancialForm = () => {
     }
 
     try {
-      const resposne = await axios.post("/api/user/new", user);
-      message.success(resposne.data.message);
-      router.push(`/url/${resposne.data._id}`);
+      // Submit the form data to the server
+      const response = await axios.post("/api/user/new", user);
+      // Display success message and redirect to the generated URL
+      message.success(response.data.message);
+      router.push(`/url/${response.data._id}`);
     } catch (error: any) {
+      // Handle and log API request errors
       const errorMessage = error.response.data.error;
       message.error(errorMessage);
-      console.log(error);
+      console.error(error);
     }
   };
 
+  // JSX representation of the component
   return (
     <Card color="transparent" shadow={false} placeholder={undefined}>
       <Typography

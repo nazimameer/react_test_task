@@ -1,7 +1,19 @@
+/**
+ * Navbar component for the website header.
+ * @module Components
+ * @exports Navbar - The Navbar React component.
+ */
+
 import React from "react";
 import Image from "next/image";
 import { Logo, QMark } from "../assets";
-export const Navbar = () => {
+
+/**
+ * React component for the website header.
+ * @function Navbar
+ * @returns {JSX.Element} The JSX representation of the component.
+ */
+export const Navbar: React.FC = (): JSX.Element => {
   return (
     <header className="w-full absolute z-10 border-b-2 border-gray-200">
       <nav className="max-w-[1440px] mx-auto flex justify-between items-center sm:pr-16 pr-6 pl-5 py-4">

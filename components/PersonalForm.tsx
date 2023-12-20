@@ -1,11 +1,10 @@
-"use client";
-import {
-  Card,
-  Input,
-  Button,
-  Typography,
-  Textarea,
-} from "@material-tailwind/react";
+/**
+ * PersonalForm component for collecting personal information.
+ * @module Components
+ * @exports PersonalForm - The PersonalForm React component.
+ */
+
+import React from "react";
 import Image from "next/image";
 import { Iicon } from "../assets";
 import { useRouter } from "next/navigation";
@@ -21,11 +20,24 @@ import {
   setPronouns,
 } from "../provider/slices/userSlice";
 import { message } from "antd";
+import {
+  Card,
+  Input,
+  Button,
+  Typography,
+  Textarea,
+} from "@material-tailwind/react";
 
-export const PersonalForm = () => {
+/**
+ * React component for collecting personal information.
+ * @function PersonalForm
+ * @returns {JSX.Element} The JSX representation of the component.
+ */
+export const PersonalForm: React.FC = (): JSX.Element => {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   const router = useRouter();
+
   const handleClick = () => {
     // Validate fields
     if (
@@ -48,31 +60,42 @@ export const PersonalForm = () => {
     router.push("/financialinfo");
   };
 
-  const handleFullnameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFullnameChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ): void => {
     dispatch(setFullName(e.target.value));
   };
 
-  const handleDateofBirthChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleDateofBirthChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ): void => {
     dispatch(setDateOfBirth(e.target.value));
   };
 
   const hanleCurrentAddressChange = (
     e: React.ChangeEvent<HTMLInputElement>
-  ) => {
+  ): void => {
     dispatch(setCurrentAddress(e.target.value));
   };
 
-  const handleHowLongChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleHowLongChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ): void => {
     dispatch(setHowLong(e.target.value));
   };
 
-  const handleAboutChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const handleAboutChange = (
+    e: React.ChangeEvent<HTMLTextAreaElement>
+  ): void => {
     dispatch(setAbout(e.target.value));
   };
 
-  const handlePronounsChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const handlePronounsChange = (
+    e: React.ChangeEvent<HTMLSelectElement>
+  ): void => {
     dispatch(setPronouns(e.target.value));
   };
+
   return (
     <Card color="transparent" shadow={false} placeholder={undefined}>
       <Typography
@@ -122,7 +145,7 @@ export const PersonalForm = () => {
           />
           <Input
             size="lg"
-            label="How long have you lived at this adress ?"
+            label="How long have you lived at this address?"
             crossOrigin={undefined}
             type="text"
             value={user.howLong}

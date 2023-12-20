@@ -1,10 +1,19 @@
-"use client";
+/**
+ * SavedInfoForm component to display saved user information.
+ * @module Components
+ * @exports SavedInfoForm - The SavedInfoForm React component.
+ */
+
+import React, { useEffect, useState } from "react";
 import { Card, Input, Typography } from "@material-tailwind/react";
 import { useParams } from "next/navigation";
 import axios from "axios";
-import { useEffect, useState } from "react";
 import { message } from "antd";
 
+/**
+ * Interface for the user data.
+ * @interface
+ */
 interface UserData {
   _id: string;
   email: string;
@@ -18,9 +27,16 @@ interface UserData {
   status: string;
   savings: number;
 }
-export const SavedInfoForm = () => {
+
+/**
+ * React component to display saved user information.
+ * @function SavedInfoForm
+ * @returns {JSX.Element} The JSX representation of the component.
+ */
+export const SavedInfoForm: React.FC = (): JSX.Element => {
   const [data, setData] = useState<UserData | null>(null);
   const params = useParams();
+
   useEffect(() => {
     async function fetchData() {
       if (params && params.id) {
@@ -49,9 +65,11 @@ export const SavedInfoForm = () => {
       shadow={false}
       placeholder={undefined}
     >
+      {/* Left Section */}
       <div>
         <div className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96">
           <div className="mb-1 flex flex-col gap-6">
+            {/* Email */}
             <Typography
               variant="h6"
               color="blue-gray"
@@ -71,6 +89,8 @@ export const SavedInfoForm = () => {
               }}
               crossOrigin={undefined}
             />
+
+            {/* Mobile Number */}
             <Typography
               variant="h6"
               color="blue-gray"
@@ -90,6 +110,8 @@ export const SavedInfoForm = () => {
               }}
               crossOrigin={undefined}
             />
+
+            {/* Pronouns */}
             <Typography
               variant="h6"
               color="blue-gray"
@@ -111,6 +133,7 @@ export const SavedInfoForm = () => {
               crossOrigin={undefined}
             />
 
+            {/* Employment status */}
             <Typography
               variant="h6"
               color="blue-gray"
@@ -132,6 +155,7 @@ export const SavedInfoForm = () => {
               crossOrigin={undefined}
             />
 
+            {/* About yourself */}
             <Typography
               variant="h6"
               color="blue-gray"
@@ -156,9 +180,11 @@ export const SavedInfoForm = () => {
         </div>
       </div>
 
+      {/* Right Section */}
       <div>
         <div className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96">
           <div className="mb-1 flex flex-col gap-6">
+            {/* Full Name */}
             <Typography
               variant="h6"
               color="blue-gray"
@@ -178,6 +204,8 @@ export const SavedInfoForm = () => {
               }}
               crossOrigin={undefined}
             />
+
+            {/* Date of Birth */}
             <Typography
               variant="h6"
               color="blue-gray"
@@ -197,6 +225,8 @@ export const SavedInfoForm = () => {
               }}
               crossOrigin={undefined}
             />
+
+            {/* Current Address */}
             <Typography
               variant="h6"
               color="blue-gray"
@@ -218,6 +248,7 @@ export const SavedInfoForm = () => {
               crossOrigin={undefined}
             />
 
+            {/* How long lived at current address */}
             <Typography
               variant="h6"
               color="blue-gray"
@@ -239,6 +270,7 @@ export const SavedInfoForm = () => {
               crossOrigin={undefined}
             />
 
+            {/* Savings / Investments */}
             <Typography
               variant="h6"
               color="blue-gray"
