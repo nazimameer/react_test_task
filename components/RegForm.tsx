@@ -28,7 +28,7 @@ export const RegForm = () => {
     const mobileNumber = user.mobileNumber;
     const mobileNumberRegex = /^\d{10}$/;
     if (!mobileNumber) return message.error("MobileNumber is required");
-    if (!mobileNumberRegex.test(mobileNumber))
+    if (!mobileNumberRegex.test(mobileNumber.toString()))
       return message.error("Mobile number should be 10 digits");
 
     // Validate password
@@ -61,7 +61,7 @@ export const RegForm = () => {
   };
 
   const handleMobileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(setMobileNumber(e.target.value));
+    dispatch(setMobileNumber(parseInt(e.target.value)));
   };
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -118,7 +118,7 @@ export const RegForm = () => {
             label="Mobile number"
             crossOrigin={undefined}
             type="number"
-            value={user.mobileNumber}
+            value={user.mobileNumber || ''}
             onChange={handleMobileChange}
           />
           <Typography

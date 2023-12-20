@@ -1,6 +1,6 @@
 interface User {
     email: string;
-    mobileNumber: string;
+    mobileNumber: number | null;
     password: string;
     confirmPassword: string;
     pronouns: string;
@@ -10,5 +10,5 @@ interface User {
     howLong: string;
     about: string;
     status: string;
-    savings: string;
+    savings: number | null;
   }

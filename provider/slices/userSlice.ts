@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface UserState {
   email: string;
-  mobileNumber: string;
+  mobileNumber: number | null;
   password: string;
   confirmPassword: string;
   pronouns: string;
@@ -12,12 +12,12 @@ interface UserState {
   howLong: string;
   about: string;
   status: string;
-  savings: string;
+  savings: number | null;
 }
 
 const initialState: UserState = {
   email: '',
-  mobileNumber: '',
+  mobileNumber: null,
   password: '',
   confirmPassword: '',
   pronouns: 'Mr',
@@ -27,7 +27,7 @@ const initialState: UserState = {
   howLong: '',
   about: '',
   status: '',
-  savings: '',
+  savings: null,
 };
 
 const userSlice = createSlice({
@@ -37,7 +37,7 @@ const userSlice = createSlice({
     setEmail: (state, action: PayloadAction<string>) => {
       state.email = action.payload;
     },
-    setMobileNumber: (state, action: PayloadAction<string>) => {
+    setMobileNumber: (state, action: PayloadAction<number>) => {
       state.mobileNumber = action.payload;
     },
     setPassword: (state, action: PayloadAction<string>) => {
@@ -67,7 +67,7 @@ const userSlice = createSlice({
     setStatus: (state, action: PayloadAction<string>) => {
       state.status = action.payload;
     },
-    setSavings: (state, action: PayloadAction<string>) => {
+    setSavings: (state, action: PayloadAction<number>) => {
       state.savings = action.payload;
     },
   },

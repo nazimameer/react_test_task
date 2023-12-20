@@ -1,6 +1,3 @@
-import { message } from "antd";
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
 export const useFormValidation = (user: User) => {
     if (!user.status || !user.savings) {
       return { success:false, msg: "All fields are required", route: "/financialinfo"}
@@ -26,7 +23,7 @@ export const useFormValidation = (user: User) => {
     }
 
     // Validate mobile number
-    const mobileNumber = user.mobileNumber;
+    const mobileNumber = String(user.mobileNumber);;
     const mobileNumberRegex = /^\d{10}$/;
     if (!mobileNumber) {
       return { success:false, msg: "MobileNumber is required", route: "/"}

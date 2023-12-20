@@ -7,7 +7,8 @@ import {
   Option,
   Select,
 } from "@material-tailwind/react";
-import { useFormValidation } from '../hooks'
+import axios from "axios";
+import { useFormValidation } from "../hooks";
 import { useDispatch, useSelector } from "react-redux";
 import {
   setStatus,
@@ -27,10 +28,10 @@ export const FinancialForm = () => {
   };
 
   const handleSavingsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(setSavings(e.target.value));
+    dispatch(setSavings(parseInt(e.target.value)));
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!user.status || !user.savings) {
       // Display an error message or handle validation error in your preferred way
       return message.error("Please fill in all the required fields.");
@@ -38,18 +39,21 @@ export const FinancialForm = () => {
 
     const valid = useFormValidation(user);
 
-    if(!valid.success){
+    if (!valid.success) {
       router.push(`${valid.route}`);
-      message.error(`${valid.msg}`)
-
+      message.error(`${valid.msg}`);
       return;
     }
-    
-    console.log(valid.success, valid.msg, valid.route);
-    
 
-    message.success("Form submitted successfully")
-  }
+    try {
+      const resposne = await axios.post("/api/user/new", user);
+      message.success(resposne.data.message);
+    } catch (error: any) {
+      const errorMessage = error.response.data.error;
+      message.error(errorMessage);
+      console.log(error);
+    }
+  };
 
   return (
     <Card color="transparent" shadow={false} placeholder={undefined}>
@@ -80,13 +84,16 @@ export const FinancialForm = () => {
             label="Additional savings / investments"
             crossOrigin={undefined}
             type="number"
-            value={user.savings}
+            value={user.savings || ""}
             onChange={handleSavingsChange}
           />
         </div>
 
-        <Button className="mt-6 bg-[#0074fe]" fullWidth placeholder={undefined}
-        onClick={handleSubmit}
+        <Button
+          className="mt-6 bg-[#0074fe]"
+          fullWidth
+          placeholder={undefined}
+          onClick={handleSubmit}
         >
           <Typography className="font-bold text-sm " placeholder={undefined}>
             S<span className="lowercase">ave and continue</span>
