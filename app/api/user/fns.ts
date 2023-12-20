@@ -2,6 +2,7 @@
 import bcrypt from "bcrypt";
 import validator from "validator";
 
+// Define a type for validation errors
 interface ValidationErrors {
   email?: string;
   mobileNumber?: string;
@@ -17,10 +18,16 @@ interface ValidationErrors {
   savings?: string;
 }
 
+/**
+ * Validate user credentials.
+ * @param userCred - User credentials to be validated.
+ * @returns Validation errors or null if valid.
+ */
 export const validateUser = (
   userCred: any
 ): ValidationErrors | null | undefined => {
   try {
+    // Destructure user credentials
     const {
       email,
       mobileNumber,
@@ -36,6 +43,7 @@ export const validateUser = (
       savings,
     } = userCred;
 
+    // Object to store validation errors
     const errors: ValidationErrors = {};
 
     // Validate email
@@ -96,20 +104,29 @@ export const validateUser = (
       errors.savings = "Savings cannot be empty";
     }
 
+    // Return errors if any, otherwise null
     return Object.keys(errors).length > 0 ? errors : null;
   } catch (error) {
     console.log(error);
   }
 };
 
-// Function to hash a password using bcrypt
-export const hashPassword = async (password: string): Promise<string> => {
-  // Generate a salt
-  const saltRounds = 10;
-  const salt = await bcrypt.genSalt(saltRounds);
+/**
+ * Hash a password using bcrypt.
+ * @param password - Password to be hashed.
+ * @returns Hashed password.
+ */
+export const hashPassword = async (password: string): Promise<string | undefined> => {
+  try {
+    // Generate a salt
+    const saltRounds = 10;
+    const salt = await bcrypt.genSalt(saltRounds);
 
-  // Hash the password using the generated salt
-  const hashedPassword = await bcrypt.hash(password, salt);
+    // Hash the password using the generated salt
+    const hashedPassword = await bcrypt.hash(password, salt);
 
-  return hashedPassword;
+    return hashedPassword;
+  } catch (error) {
+    console.log(error);
+  }
 };
