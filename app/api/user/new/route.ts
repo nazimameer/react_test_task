@@ -2,8 +2,11 @@ import { connectToDb } from "@/utils/db";
 import User from "@/models/user";
 import { hashPassword, validateUser } from "../fns";
 import { NextRequest, NextResponse } from "next/server";
+
+// Establish a database connection
 connectToDb();
 
+// Define the shape of the user credentials expected in the request body
 interface UserCredentials {
   email: string;
   mobileNumber: number;
@@ -19,21 +22,26 @@ interface UserCredentials {
   savings: number;
 }
 
+// Handler for processing POST requests to create a new user
 export const POST = async (req: NextRequest) => {
   try {
+    // Parse the request body as user credentials
     const userCred: UserCredentials = await req.json();
-    // Use the validator function
+
+    // Use the validator function to check the user credentials
     const validationErrors = validateUser(userCred);
 
     if (validationErrors) {
-      // Return validation errors
+      // Return validation errors if any
       console.log(validationErrors);
       return NextResponse.json({ errors: validationErrors }, { status: 400 });
     }
 
+    // Hash the user's password before saving it to the database
     const hashedPassword = await hashPassword(userCred.password);
-    console.log(hashedPassword);
+    console.log("Hashed Password:", hashedPassword);
 
+    // Create a new User instance with the provided credentials
     const newUser = new User({
       email: userCred.email,
       mobileNumber: userCred.mobileNumber,
@@ -49,8 +57,11 @@ export const POST = async (req: NextRequest) => {
     });
 
     try {
+      // Save the new user to the database
       const savedUser = await newUser.save();
-        const { _id } = savedUser;
+      const { _id } = savedUser;
+
+      // Return a success response with the newly created user's ID
       return NextResponse.json({
         message: "Form submitted successfully",
         success: true,
@@ -58,7 +69,7 @@ export const POST = async (req: NextRequest) => {
       });
     } catch (saveError: any) {
       if (saveError.code === 11000) {
-        // Unique constraint violation
+        // Unique constraint violation (e.g., duplicate email or mobile number)
         const errorMessage = saveError.keyPattern.email
           ? "Email address is already exist"
           : "Mobile number is already exist";
@@ -70,6 +81,7 @@ export const POST = async (req: NextRequest) => {
       }
     }
   } catch (error: any) {
+    // Handle unexpected errors during request processing
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 };
