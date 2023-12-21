@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Craxino Next.js Project
+Welcome to the GitHub repository for the Craxino Next.js Project, a modern web application built using Next.js 14. This project is designed to demonstrate a robust form submission and data validation system with a backend powered by MongoDB. You can view the live deployment of this project at https://craxino.vercel.app/.
 
-## Getting Started
+Features
+Form Submission: Users can submit their data through a user-friendly interface.
+Data Validation: Ensures data integrity with specific validation rules:
+Email: Must be unique.
+Phone Number: Must be unique.
+DOB: Must follow a valid date format.
+Password: Alphanumeric with a minimum of 6 characters, including at least one uppercase letter and one number.
+Data Persistence: Submitted data is securely stored in MongoDB.
+Redux for State Management: Utilizes Redux for efficient and reliable state handling across the application.
+View Saved Data: Users can access a link to view the form populated with their saved data.
+Environment Setup
+Before running the project, you need to set up the following environment variables in a .env file:
 
-First, run the development server:
+makefile
+Copy code
+MONGODB_URI=YOUR_MONGODB_URI
+NEXT_PUBLIC_DOMAIN=YOUR_DOMAIN
+Replace YOUR_MONGODB_URI with your MongoDB connection string and YOUR_DOMAIN with the domain where your application is hosted.
 
-```bash
+Installation
+To install all dependencies, run the following command in your terminal:
+
+css
+Copy code
+npm i
+Running the Project
+To start the development server, execute:
+
+arduino
+Copy code
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Contributing
+Contributions to this project are welcome. Please ensure that your code adheres to the existing code style and that all tests pass before submitting a pull request.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+License
+This project is licensed under the MIT License - see the LICENSE.md file for details.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Support
+If you encounter any issues or have questions, please file an issue on the GitHub issue tracker.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Thank you for checking out the Craxino Next.js Project. We hope this project serves as a valuable resource for your development endeavors.
